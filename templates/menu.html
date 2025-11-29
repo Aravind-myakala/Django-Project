@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Menu | PizzaDeliveroo{% endblock title %}
+
+{% block content %}
+<style>
+/* 🧱 Background */
+.menu-section {
+  background: linear-gradient(120deg, rgba(255, 245, 235, 0.9), rgba(255, 240, 220, 0.95)),
+              url('https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=1920&auto=format&fit=crop')
+              center/cover no-repeat;
+  min-height: 100vh;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ✨ Title */
+.menu-title {
+  font-size: 2.5rem;
+  color: #d62828;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* 🟢 Tab Buttons */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.tab-buttons label {
+  background: #fff;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #f77f00;
+  color: #d62828;
+  transition: all 0.3s ease;
+}
+
+.tab-buttons label:hover {
+  background: #f77f00;
+  color: white;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* 🧩 Section Container */
+.tab-content {
+  display: none;
+}
+
+#veg:checked ~ .tabs .veg-section,
+#nonveg:checked ~ .tabs .nonveg-section {
+  display: block;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🍕 Grid & Cards */
+.pizza-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  padding: 0 20px;
+}
+
+.pizza-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 280px;
+}
+
+.pizza-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.pizza-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.pizza-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.pizza-info h5 {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.pizza-info p {
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin: 8px 0;
+}
+
+.price {
+  color: #f77f00;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+</style>
+
+<div class="menu-section">
+  <h1 class="menu-title">🍴 Explore Our Pizza Menu</h1>
+
+  <!-- Radio Buttons -->
+  <input type="radio" name="menu" id="veg" checked>
+  <input type="radio" name="menu" id="nonveg">
+
+  <!-- Tab Buttons -->
+  <div class="tab-buttons">
+    <label for="veg">🌿 Veg Pizzas</label>
+    <label for="nonveg">🍗 Non-Veg Pizzas</label>
+  </div>
+
+  <div class="tabs">
+    <!-- 🌿 Veg Section -->
+    <div class="tab-content veg-section">
+      <div class="pizza-container">
+        <!-- ✅ Add as many cards as you want below -->
+        <div class="pizza-card">
+          <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Margherita">
+          <div class="pizza-info">
+            <h5>Margherita</h5>
+            <p>Classic cheese and tomato pizza with basil.</p>
+            <p class="price">₹199</p>
+          </div>
+        </div>
+
+        <div class="pizza-card">
+          <img src="https://cdn.pixabay.com/photo/2017/08/06/06/42/pizza-2589569_1280.jpg" alt="Paneer Tikka">
+          <div class="pizza-info">
+            <h5>Paneer Tikka Pizza</h5>
+            <p>Spicy paneer cubes with onions and capsicum.</p>
+            <p class="price">₹249</p>
+          </div>
+        </div>
+
+        <div class="pizza-card">
+          <img src="https://cdn.pixabay.com/photo/2015/07/15/19/44/pizza-846841_1280.jpg" alt="Veggie Supreme">
+          <div class="pizza-info">
+            <h5>Veggie Supreme</h5>
+            <p>Loaded with capsicum, olives, corn and cheese.</p>
+            <p class="price">₹279</p>
+          </div>
+        </div>
+
+        <!-- 👇 You can keep adding -->
+        <div class="pizza-card">
+          <img src="https://cdn.pixabay.com/photo/2022/08/02/07/30/pizza-7359753_1280.jpg" alt="Farmhouse Pizza">
+          <div class="pizza-info">
+            <h5>Farmhouse Pizza</h5>
+            <p>Loaded with fresh veggies, cheese, and oregano.</p>
+            <p class="price">₹289</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 🍗 Non-Veg Section -->
+    <div class="tab-content nonveg-section">
+      <div class="pizza-container">
+        <div class="pizza-card">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.QuhC85gpZChP0FisIREMOQHaFj?pid=Api&P=0&h=180" alt="Chicken BBQ">
+          <div class="pizza-info">
+            <h5>Chicken BBQ</h5>
+            <p>Smoky grilled chicken with spicy BBQ sauce.</p>
+            <p class="price">₹299</p>
+          </div>
+        </div>
+
+        <div class="pizza-card">
+          <img src="https://tse2.mm.bing.net/th/id/OIP.Fg5cOX81v7Lj3RxQlrdcGQHaHa?pid=Api&P=0&h=180" alt="Pepperoni Pizza">
+          <div class="pizza-info">
+            <h5>Pepperoni Pizza</h5>
+            <p>Loaded with crispy pepperoni and mozzarella.</p>
+            <p class="price">₹349</p>
+          </div>
+        </div>
+
+        <div class="pizza-card">
+          <img src="https://tse4.mm.bing.net/th/id/OIP.erUtJTDiOh-z8A3d9XbIZgHaFF?pid=Api&P=0&h=180" alt="Chicken Supreme">
+          <div class="pizza-info">
+            <h5>Chicken Supreme</h5>
+            <p>Topped with spicy chicken, onion, and cheese.</p>
+            <p class="price">₹329</p>
+          </div>
+        </div>
+
+        <div class="pizza-card">
+          <img src="https://tse4.mm.bing.net/th/id/OIP.Fbz4MJxj6zjTqEaPdgDOtQHaJQ?pid=Api&P=0&h=180" alt="Peri Peri Chicken Pizza">
+          <div class="pizza-info">
+            <h5>Peri Peri Chicken</h5>
+            <p>Fiery peri-peri chicken with hot sauce and cheese.</p>
+            <p class="price">₹359</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

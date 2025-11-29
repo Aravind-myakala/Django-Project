@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Our Services | PizzaDeliveroo{% endblock title %}
+
+{% block content %}
+<style>
+.services-section {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #fffaf5, #ffe9dc);
+  padding: 60px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.table-container {
+  max-width: 1000px;
+  margin: auto;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+h2 {
+  text-align: center;
+  color: #d62828;
+  margin-bottom: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #d62828;
+  color: white;
+}
+
+tr:hover {
+  background: #fdf2ed;
+}
+</style>
+
+<div class="services-section">
+  <div class="table-container">
+    <h2 style="font-weight: bold;">📋 All Orders</h2>
+
+    {% if orders %}
+    <table>
+      <thead>
+        <tr>
+          <th>Pizza Name</th>
+          <th>Type</th>
+          <th>Quantity</th>
+          <th>Customer</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>Ordered At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>{{ order.pizza_name }}</td>
+          <td>{{ order.get_pizza_type_display }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.customer_name }}</td>
+          <td>{{ order.contact }}</td>
+          <td>{{ order.address }}</td>
+          <td>{{ order.ordered_at|date:"d M Y, h:i A" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p style="text-align:center;">No orders yet 🍕</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
